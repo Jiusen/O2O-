@@ -42,6 +42,25 @@ public class ShopDaoTest extends BaseTest {
         shop.setEnableStatus(1);
         shop.setAdvice("审核中");
         int effectedNum = shopDao.intsertShop(shop);
-        System.out.println("受影响的行数: " + effectedNum);
+        System.out.println("insert受影响的行数: " + effectedNum);
+    }
+
+    @Test
+    public void testUpdateShop(){
+        Shop shop = new Shop();
+        shop.setShopId(1l);
+        PersonInfo owner = new PersonInfo();
+        Area area = new Area();
+        ShopCategory shopCategory = new ShopCategory();
+        owner.setUserId(1l);
+        shop.setShopName("firesooon");
+        shop.setShopDesc("数据改变医疗");
+        shop.setShopAddr("杭州西湖古荡");
+        shop.setPhone("15137742640");
+        shop.setShopImg("无");
+        shop.setLastEditTime(new Date());
+        shop.setAdvice("已通过");
+        int effectedNum = shopDao.updateShop(shop);
+        System.out.println("update受影响的行数: " + effectedNum);
     }
 }
