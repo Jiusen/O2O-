@@ -1,0 +1,6 @@
+2020-11-26 11:07:33.402 [main] DEBUG com.o2o.dao.ShopDao.intsertShop - ==>  Preparing: INSERT INTO tb_shop(owner_id,area_id,shop_category_id,shop_name,shop_desc,shop_addr, phone,shop_img,priority,create_time,last_edit_time,enable_status,advice) VALUES (?,?,?,?,?, ?,?,?,?,?,?,?,?) 
+2020-11-26 11:07:33.466 [main] DEBUG com.o2o.dao.ShopDao.intsertShop - ==> Parameters: 1(Long), 2(Integer), 1(Long), 测试的店铺(String), test(String), test(String), test(String), test(String), null, 2020-11-26 11:07:33.0(Timestamp), null, 1(Integer), 审核中(String)
+2020-11-26 11:07:33.471 [main] DEBUG com.o2o.dao.ShopDao.intsertShop - <==    Updates: 1
+2020-11-26 14:09:31.839 [main] DEBUG com.o2o.dao.ShopDao.updateShop - ==>  Preparing: update tb_shop SET shop_name=? ,shop_desc=? ,shop_addr=? ,phone=? ,shop_img=? ,last_edit_time=? ,advice=? where shop_id=? 
+2020-11-26 14:09:31.878 [main] DEBUG com.o2o.dao.ShopDao.updateShop - ==> Parameters: firesooon(String), 数据改变医疗(String), 杭州西湖古荡(String), 15137742640(String), 无(String), 2020-11-26 14:09:31.514(Timestamp), 已通过(String), 1(Long)
+2020-11-26 14:09:31.888 [main] DEBUG com.o2o.dao.ShopDao.updateShop - <==    Updates: 1
