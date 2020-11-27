@@ -55,7 +55,7 @@ public class ImageUtil {
         String relativeAddr = targetAddr + realFileName + extension;  //图片相对路径
         logger.debug("current relativeAddr is: " + relativeAddr);
         File dest = new File(PathUtil.getImgBasePath() + relativeAddr); //图片在机器上的URL
-        logger.debug("current complete addr is: " + dest);
+        logger.debug("dest complete addr is: " + dest);
         try{
             Thumbnails.of(thumbnail).size(200,200)
                     .watermark(Positions.BOTTOM_RIGHT,ImageIO.read(new File(basePath + "/watermark.jpg")), 0.25f)
