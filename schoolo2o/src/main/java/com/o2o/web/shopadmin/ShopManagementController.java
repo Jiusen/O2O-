@@ -5,6 +5,7 @@ import com.o2o.dto.ShopExecution;
 import com.o2o.entity.PersonInfo;
 import com.o2o.entity.Shop;
 import com.o2o.enums.ShopStateEnum;
+import com.o2o.exceptions.ShopOperationException;
 import com.o2o.service.ShopService;
 import com.o2o.util.HttpServletRequestUtil;
 import com.o2o.util.ImageUtil;
@@ -71,27 +72,21 @@ public class ShopManagementController {
             PersonInfo owner = new PersonInfo();
             owner.setUserId(1L);
             shop.setOwner(owner);
-            File shopImgFile = new File(PathUtil.getImgBasePath() + ImageUtil.getRandomFileName());
+            ShopExecution shopExecution = null; //店铺注册
             try {
-                shopImgFile.createNewFile();
-            } catch (IOException e) {
+                shopExecution = shopService.addShop(shop, shopImg.getInputStream(), shopImg.getOriginalFilename());
+                if (shopExecution.getState() == ShopStateEnum.CHECK.getState()) {
+                    modelMap.put("success", true);
+                } else {
+                    modelMap.put("success", false);
+                    modelMap.put("errMsg", shopExecution.getStateInfo());
+                }
+            } catch (ShopOperationException e){
                 modelMap.put("success", false);
                 modelMap.put("errMsg", e.getMessage());
-                return modelMap;
-            }
-            try {
-                inputStreamToFile(shopImg.getInputStream(), shopImgFile);
-            } catch (IOException e) {
+            } catch (IOException e){
                 modelMap.put("success", false);
                 modelMap.put("errMsg", e.getMessage());
-                return modelMap;
-            }
-            ShopExecution shopExecution = shopService.addShop(shop, shopImgFile); //店铺注册
-            if (shopExecution.getState() == ShopStateEnum.CHECK.getState()){
-                modelMap.put("success", true);
-            } else {
-                modelMap.put("success", false);
-                modelMap.put("errMsg", shopExecution.getStateInfo());
             }
             return modelMap;
         } else {
@@ -100,38 +95,5 @@ public class ShopManagementController {
             return modelMap;
         }
         //3、返回结果
-    }
-
-    /**
-     * InputStream => File
-     * @param inputStream
-     * @param file
-     */
-    private static void inputStreamToFile(InputStream inputStream, File file){
-        OutputStream outputStream = null;
-        try{
-            outputStream = new FileOutputStream(file);
-            int bytesRead = 0;
-            byte[] buffer = new byte[1024];
-            while ((bytesRead = inputStream.read(buffer)) != -1){
-                outputStream.write(buffer, 0, bytesRead);
-            }
-        } catch (Exception e) {
-            throw new RuntimeException("调用inputStreamToFile产生异常: " + e.getMessage());
-        } finally {
-            /*
-             每当try块完成（成功与否）时，它将尝试关闭finally块中的流（ inputStream和outputStream ），但是当inputStream.read(buffer))可能失败，您需要检查首先，如果它不是null否则你将获得NPE。
-             */
-            try {
-                if (outputStream != null){
-                    outputStream.close();
-                }
-                if (inputStream != null){
-                    inputStream.close();
-                }
-            } catch (IOException e){
-                throw new RuntimeException("inputStreamToFile关闭io产生异常: " + e.getMessage());
-            }
-        }
     }
 }

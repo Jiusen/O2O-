@@ -9,6 +9,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
@@ -44,22 +45,21 @@ public class ImageUtil {
 
     /**
      * 生成缩略图->文件存储
-     * @param thumbnail   图片文件
+     * @param thumbnailInputStream 图片文件输入流
+     * @param fileName 文件名
      * @param targetAddr 目标地址
      * @return 返回新的图片的相对地址（目的：换机器的话，直接从数据库得到图片地址，不需要再更换BasePath，解耦）
-     * 例：相对路径：\upload\item\shop\10\2020112711265576588.jpg
-     * 例：绝对路径：D:\Jiusenproject\image\upload\item\shop\10\2020112711265576588.jpg
-     */
-    public static String generateThumbnail(File thumbnail, String targetAddr){
+    */
+    public static String generateThumbnail(InputStream thumbnailInputStream, String fileName, String targetAddr){
         String realFileName = getRandomFileName(); //文件名
-        String extension = getFileExtension(thumbnail); //扩展名：.jsp
+        String extension = getFileExtension(fileName); //扩展名：.jsp
         makeDirPath(targetAddr);
         String relativeAddr = targetAddr + realFileName + extension;  //图片相对路径
         logger.debug("current relativeAddr is: " + relativeAddr);
         File dest = new File(PathUtil.getImgBasePath() + relativeAddr); //图片在机器上的URL
         logger.debug("dest complete addr is: " + dest);
         try{
-            Thumbnails.of(thumbnail).size(200,200)
+            Thumbnails.of(thumbnailInputStream).size(200,200)
                     .watermark(Positions.BOTTOM_RIGHT,ImageIO.read(new File(basePath + "/watermark.jpg")), 0.25f)
                     .outputQuality(0.8f)
                     .toFile(dest);
@@ -85,12 +85,11 @@ public class ImageUtil {
 
     /**
      * 获取输入文件名的扩展名
-     * @param thumbnail
+     * @param fileName 文件名
      * @return
      */
-    private static String getFileExtension(File thumbnail) {
-        String originalFileName = thumbnail.getName();
-        return originalFileName.substring(originalFileName.lastIndexOf("."));
+    private static String getFileExtension(String fileName) {
+        return fileName.substring(fileName.lastIndexOf("."));
     }
 
     /**
