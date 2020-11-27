@@ -44,9 +44,11 @@ public class ImageUtil {
 
     /**
      * 生成缩略图->文件存储
-     * @param thumbnail
+     * @param thumbnail   图片文件
      * @param targetAddr 目标地址
      * @return 返回新的图片的相对地址（目的：换机器的话，直接从数据库得到图片地址，不需要再更换BasePath，解耦）
+     * 例：相对路径：\upload\item\shop\10\2020112711265576588.jpg
+     * 例：绝对路径：D:\Jiusenproject\image\upload\item\shop\10\2020112711265576588.jpg
      */
     public static String generateThumbnail(File thumbnail, String targetAddr){
         String realFileName = getRandomFileName(); //文件名
@@ -95,7 +97,7 @@ public class ImageUtil {
      * 生成随机的文件（当前年月日时分秒 + 5位随机数）
      * @return
      */
-    private static String getRandomFileName() {
+    public static String getRandomFileName() {
         //获取随机的5位数
         int rannum = r.nextInt(89999) + 10000;
         String nowTimeStr = sdf.format(new Date());

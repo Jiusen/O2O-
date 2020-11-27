@@ -27,9 +27,9 @@ public class ShopServiceimpl implements ShopService {
     private ShopDao shopDao;
 
     /**
-     * 事务操作
-     * @param shop
-     * @param shopImg
+     * 事务操作 - 添加商铺
+     * @param shop 商铺
+     * @param shopImg 商铺图片文件
      * @return
      */
     @Override
