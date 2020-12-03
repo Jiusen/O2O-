@@ -20,7 +20,7 @@ public class CodeUtil {
         //真正的验证码
         String verifyCodeExpected = (String) request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
         //实际输入的验证码
-        String verifyCodeActual = HttpServletRequestUtil.getString(request, "verifyCodeExpected");
+        String verifyCodeActual = HttpServletRequestUtil.getString(request, "verifyCodeActual");
 
         if(verifyCodeActual == null || !verifyCodeActual.equals(verifyCodeExpected)){
             return false;
