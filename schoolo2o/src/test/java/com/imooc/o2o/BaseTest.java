@@ -3,6 +3,7 @@ package com.imooc.o2o;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 /**
  * @Author Jiusen Guo
@@ -12,5 +13,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 //告诉Junit spring配置文件的位置
 @ContextConfiguration({"classpath:spring/*.xml"})
+@WebAppConfiguration("src/main/resources")
 public class BaseTest {
 }
