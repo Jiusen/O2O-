@@ -11,6 +11,7 @@ import com.o2o.exceptions.ShopOperationException;
 import com.o2o.service.AreaService;
 import com.o2o.service.ShopCategoryService;
 import com.o2o.service.ShopService;
+import com.o2o.util.CodeUtil;
 import com.o2o.util.HttpServletRequestUtil;
 import com.o2o.util.ImageUtil;
 import com.o2o.util.PathUtil;
@@ -68,7 +69,7 @@ public class ShopManagementController {
     }
 
     /**
-     * 注册店铺
+     * 店铺注册
      * @param request
      * @return
      */
@@ -77,6 +78,12 @@ public class ShopManagementController {
     private Map<String,Object> registerShop(HttpServletRequest request){
 
         Map<String,Object> modelMap = new HashMap<>();
+
+        if (!CodeUtil.checkVerifyCode(request)){
+            modelMap.put("success", false);
+            modelMap.put("errMsg", "输入的验证码有误");
+            return modelMap;
+        }
 
         //1、接受并转化响应的参数，包括店铺信息以及图片信息
         String shopStr = HttpServletRequestUtil.getString(request, "shopStr");
