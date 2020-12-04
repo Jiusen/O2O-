@@ -27,13 +27,6 @@ public class ShopServiceimpl implements ShopService {
     @Autowired
     private ShopDao shopDao;
 
-    /**
-     * 事务操作 - 添加商铺
-     * @param shop 商铺
-     * @param shopImgInputStream 商铺图片文件输入流
-     * @param fileName 文件名
-     * @return
-     */
     @Override
     @Transactional
     public ShopExecution addShop(Shop shop, InputStream shopImgInputStream, String fileName) {
@@ -67,6 +60,42 @@ public class ShopServiceimpl implements ShopService {
             throw new ShopOperationException("addShop error: " + e.getMessage());
         }
         return new ShopExecution(ShopStateEnum.stateOf(shop.getEnableStatus()));
+    }
+
+    @Override
+    public Shop getByShopId(long shopId) {
+        return shopDao.queryByShopId(shopId);
+    }
+
+    @Override
+    public ShopExecution modifyShop(Shop shop, InputStream shopImgInputStream, String fileName) throws ShopOperationException {
+
+        if (shop == null || shop.getShopId() == null){
+            return new ShopExecution(ShopStateEnum.NULL_SHOP);
+        } else {
+            //2、更新店铺信息
+//            try{
+                //1、判断是否需要处理图片
+                if (shopImgInputStream != null && fileName != null && !"".equals(fileName)){
+                    Shop tempShop = shopDao.queryByShopId(shop.getShopId());
+                    if (tempShop.getShopImg() != null){
+                        ImageUtil.deleteFileOrPath(tempShop.getShopImg());
+                    }
+                    addShopImg(shop, shopImgInputStream, fileName);
+                }
+                //更新店铺信息
+                shop.setLastEditTime(new Date());
+                int effectedNum = shopDao.updateShop(shop);
+                if (effectedNum <= 0){
+                    return new ShopExecution(ShopStateEnum.INNER_ERROR);
+                } else {
+                    shop = shopDao.queryByShopId(shop.getShopId());
+                    return new ShopExecution(ShopStateEnum.SUCCESS, shop);
+                }
+//            }catch (Exception e){
+//                throw new ShopOperationException("modifyShop error: " + e.getMessage());
+//            }
+        }
     }
 
     /**
