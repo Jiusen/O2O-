@@ -17,6 +17,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Author Jiusen Guo
@@ -28,8 +29,22 @@ public class ShopServiceTest extends BaseTest {
     @Autowired
     private ShopService shopService;
 
-    @Autowired
-    private ShopDao shopDao;
+    @Test
+    public void testQueryShopList(){
+        Shop shopCondition = new Shop();
+//        PersonInfo owner = new PersonInfo();
+//        owner.setUserId(1L);
+//        shopCondition.setOwner(owner);
+//        ShopCategory shopCategory = new ShopCategory();
+//        shopCategory.setShopCategoryId(1L);
+//        shopCondition.setShopCategory(shopCategory);
+        ShopExecution shopExecutionhopExecution = shopService.getShopList(shopCondition, 1, 3);
+        System.out.println("店铺总数为: " + shopExecutionhopExecution.getCount());
+        System.out.println("店铺列表数为: " + shopExecutionhopExecution.getShopList().size());
+        System.out.println(shopExecutionhopExecution.getShopList().get(0).getShopId());
+        System.out.println(shopExecutionhopExecution.getShopList().get(1).getShopId());
+        System.out.println(shopExecutionhopExecution.getShopList().get(2).getShopId());
+    }
 
     @Test
     public void testModifyShop() throws FileNotFoundException {

@@ -7,6 +7,7 @@ import com.o2o.enums.ShopStateEnum;
 import com.o2o.exceptions.ShopOperationException;
 import com.o2o.service.ShopService;
 import com.o2o.util.ImageUtil;
+import com.o2o.util.PageCalculator;
 import com.o2o.util.PathUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.io.File;
 import java.io.InputStream;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Author Jiusen Guo
@@ -99,12 +101,21 @@ public class ShopServiceimpl implements ShopService {
         }
     }
 
-    /**
-     * 得到处理后的图片的地址
-     * @param shop
-     * @param shopImgInputStream
-     * @param fileName
-     */
+    @Override
+    public ShopExecution getShopList(Shop shopCondition, int pageIndex, int pageSize) {
+        int rowIndex = PageCalculator.calculateRowIndex(pageIndex, pageSize);
+        List<Shop> shopList = shopDao.queryShopList(shopCondition, rowIndex, pageSize);
+        int count = shopDao.queryShopCount(shopCondition);
+        ShopExecution shopExecution = new ShopExecution();
+        if (shopList != null){
+            shopExecution.setShopList(shopList);
+            shopExecution.setCount(count);
+        } else {
+            shopExecution.setState(ShopStateEnum.INNER_ERROR.getState());
+        }
+        return shopExecution;
+    }
+
     private void addShopImg(Shop shop, InputStream shopImgInputStream, String fileName) {
         //获取shop图片目录的相对值路径
         String dest = PathUtil.getShopImagePath(shop.getShopId());

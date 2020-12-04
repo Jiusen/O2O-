@@ -16,6 +16,7 @@ public interface ShopService {
 
     /**
      * 新增店铺
+     *
      * @param shop
      * @param shopImgInputStream
      * @param fileName
@@ -25,6 +26,7 @@ public interface ShopService {
 
     /**
      * 通过店铺id获取店铺信息
+     *
      * @param shopId
      * @return
      */
@@ -32,10 +34,21 @@ public interface ShopService {
 
     /**
      * 更新店铺信息，包括对图片的处理
+     *
      * @param shop
      * @param shopInputStream
      * @param fileName
      * @return
      */
     ShopExecution modifyShop(Shop shop, InputStream shopInputStream, String fileName) throws ShopOperationException;
+
+    /**
+     * 根据shopCondition分页返回相应店铺列表
+     *
+     * @param shopCondition
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
+    public ShopExecution getShopList(Shop shopCondition, int pageIndex, int pageSize);
 }
