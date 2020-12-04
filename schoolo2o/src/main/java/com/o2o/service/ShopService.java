@@ -45,9 +45,9 @@ public interface ShopService {
     /**
      * 根据shopCondition分页返回相应店铺列表
      *
-     * @param shopCondition
-     * @param pageIndex
-     * @param pageSize
+     * @param shopCondition 条件
+     * @param pageIndex 页码 1 2 3...
+     * @param pageSize  每页的条数
      * @return
      */
     public ShopExecution getShopList(Shop shopCondition, int pageIndex, int pageSize);
