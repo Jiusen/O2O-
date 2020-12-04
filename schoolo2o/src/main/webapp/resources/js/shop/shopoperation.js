@@ -2,12 +2,20 @@
  * 
  */
 $(function() {
+	var shopId = getQueryString("shopId");
+	var isEdit = shopId ? true:false;
 	// 用于店铺注册时候的店铺类别以及区域列表的初始化的URL
-	var initUrl = '/schoolo2o/shopmanagement/getshopinitinfo';
+	var initUrl = '/schoolo2o/shopadmin/getshopinitinfo';
 	// 注册店铺的URL
-	var registerShopUrl = '/schoolo2o/shopmanagement/registershop';
+	var registerShopUrl = '/schoolo2o/shopadmin/registershop';
+	var shopInfoUrl = '/schoolo2o/shopadmin/getshopbyid?shopId=' + shopId;
+	var editShopUrl = '/schoolo2o/shopadmin/modifyshop';
 
-	getShopInitInfo();
+	if (!isEdit){
+		getShopInitInfo();
+	} else {
+		getShopInfo(shopId);
+	}
 
 	// 通过店铺Id获取店铺信息
 	function getShopInfo(shopId) {
@@ -64,10 +72,10 @@ $(function() {
 	$('#submit').click(function() {
 		// 创建shop对象
 		var shop = {};
-		// if (isEdit) {
-		// 	// 若属于编辑，则给shopId赋值
-		// 	shop.shopId = shopId;
-		// }
+		if (isEdit) {
+			// 若属于编辑，则给shopId赋值
+			shop.shopId = shopId;
+		}
 		// 获取表单里的数据并填充进对应的店铺属性中
 		shop.shopName = $('#shop-name').val();
 		shop.shopAddr = $('#shop-addr').val();
@@ -102,7 +110,7 @@ $(function() {
 		formData.append('verifyCodeActual', verifyCodeActual);
 		// 将数据提交至后台处理相关操作
 		$.ajax({
-			url : registerShopUrl,
+			url : (isEdit ? editShopUrl:registerShopUrl),
 			type : 'POST',
 			data : formData,
 			contentType : false,

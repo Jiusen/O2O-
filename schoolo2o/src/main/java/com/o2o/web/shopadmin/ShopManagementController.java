@@ -38,7 +38,7 @@ import java.util.Map;
  * @Description
  */
 @Controller
-@RequestMapping("/shopmanagement")
+@RequestMapping("/shopadmin")
 public class ShopManagementController {
 
     @Autowired
@@ -239,6 +239,5 @@ public class ShopManagementController {
             modelMap.put("errMsg", "请输入店铺信息");
             return modelMap;
         }
-
     }
 }
