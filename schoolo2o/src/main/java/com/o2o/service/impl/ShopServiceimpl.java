@@ -36,6 +36,7 @@ public class ShopServiceimpl implements ShopService {
         }
 
         try{
+            // 给店铺信息赋初始值
             shop.setEnableStatus(0);
             shop.setCreateTime(new Date());
             shop.setLastEditTime(new Date());
@@ -59,7 +60,7 @@ public class ShopServiceimpl implements ShopService {
         } catch (Exception e){
             throw new ShopOperationException("addShop error: " + e.getMessage());
         }
-        return new ShopExecution(ShopStateEnum.stateOf(shop.getEnableStatus()));
+        return new ShopExecution(ShopStateEnum.CHECK, shop);
     }
 
     @Override
@@ -74,7 +75,7 @@ public class ShopServiceimpl implements ShopService {
             return new ShopExecution(ShopStateEnum.NULL_SHOP);
         } else {
             //2、更新店铺信息
-//            try{
+            try{
                 //1、判断是否需要处理图片
                 if (shopImgInputStream != null && fileName != null && !"".equals(fileName)){
                     Shop tempShop = shopDao.queryByShopId(shop.getShopId());
@@ -92,9 +93,9 @@ public class ShopServiceimpl implements ShopService {
                     shop = shopDao.queryByShopId(shop.getShopId());
                     return new ShopExecution(ShopStateEnum.SUCCESS, shop);
                 }
-//            }catch (Exception e){
-//                throw new ShopOperationException("modifyShop error: " + e.getMessage());
-//            }
+            }catch (Exception e){
+                throw new ShopOperationException("modifyShop error: " + e.getMessage());
+            }
         }
     }
 
