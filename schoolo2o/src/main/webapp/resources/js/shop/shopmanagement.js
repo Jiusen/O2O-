@@ -1,6 +1,6 @@
 $(function() {
 	var shopId = getQueryString('shopId');
-	var shopInfoUrl = '/o2o/shopadmin/getshopmanagementinfo?shopId=' + shopId;
+	var shopInfoUrl = '/schoolo2o/shopadmin/getshopmanagementinfo?shopId=' + shopId;
 	$.getJSON(shopInfoUrl, function(data) {
 		if (data.redirect) {
 			window.location.href = data.url;
@@ -9,7 +9,7 @@ $(function() {
 				shopId = data.shopId;
 			}
 			$('#shopInfo')
-					.attr('href', '/o2o/shopadmin/shopoperation?shopId=' + shopId);
+					.attr('href', '/schoolo2o/shopadmin/shopoperation?shopId=' + shopId);
 		}
 	});
 });
