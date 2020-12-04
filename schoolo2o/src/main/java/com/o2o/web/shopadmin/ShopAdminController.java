@@ -17,10 +17,17 @@ public class ShopAdminController {
 
     @RequestMapping(value = "/shopoperation")
     public String shopOperation(HttpServletResponse response) {
-
         //后续进行拦截器配置
         response.setContentType("text/html;charset=utf-8");
         // 转发至店铺注册/编辑页面
         return "shop/shopoperation";
+    }
+
+    @RequestMapping(value = "/shoplist")
+    public String shopList(HttpServletResponse response) {
+        //后续进行拦截器配置
+        response.setContentType("text/html;charset=utf-8");
+        // 转发至店铺注册/编辑页面
+        return "shop/shoplist";
     }
 }
