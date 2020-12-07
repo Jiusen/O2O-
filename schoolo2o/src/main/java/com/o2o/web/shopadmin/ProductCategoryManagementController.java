@@ -58,7 +58,7 @@ public class ProductCategoryManagementController {
      * @param request
      * @return
      */
-    @RequestMapping(value = "/addproductcategorys", method = RequestMethod.GET)
+    @RequestMapping(value = "/addproductcategorys", method = RequestMethod.POST)
     @ResponseBody
     private Map<String,Object> addProductCategorys(@RequestBody List<ProductCategory> productCategoryList, HttpServletRequest request){
         Map<String,Object> modelMap = new HashMap<>();
