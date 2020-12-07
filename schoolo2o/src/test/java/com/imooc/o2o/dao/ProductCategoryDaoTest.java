@@ -47,4 +47,17 @@ public class ProductCategoryDaoTest extends BaseTest {
         int effectNum = productCategoryDao.batchInsertProductCategory(productCategoryList);
         System.out.println(effectNum);
     }
+
+    @Test
+    public void testdeleteProductCategory(){
+        long shopId = 11;
+        List<ProductCategory> productCategoryList = productCategoryDao.queryProductCategoryList(shopId);
+
+        for (ProductCategory pc : productCategoryList) {
+            if ("商品类别1".equals(pc.getProductCategoryName()) || "商品类别2".equals(pc.getProductCategoryName())) {
+                int effectedNum = productCategoryDao.deleteProductCategory(pc.getProductCategoryId(), shopId);
+                System.out.println(effectedNum);
+            }
+        }
+    }
 }

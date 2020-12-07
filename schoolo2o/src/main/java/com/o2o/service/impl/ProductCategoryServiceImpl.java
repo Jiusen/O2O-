@@ -6,6 +6,7 @@ import com.o2o.entity.ProductCategory;
 import com.o2o.enums.ProductCategoryStateEnum;
 import com.o2o.exceptions.ProductCategoryOperationException;
 import com.o2o.service.ProductCategoryService;
+import org.springframework.beans.PropertyAccessException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,6 +45,22 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
             }
         } else {
             return new ProductCategoryExecution(ProductCategoryStateEnum.EMPTY_LIST);
+        }
+    }
+
+    @Override
+    @Transactional
+    public ProductCategoryExecution deleteProductCategory(long productCategoryId, long shopId) throws ProductCategoryOperationException {
+        //TODO 将此商品类别下的商品的类别Id置为空
+        try {
+            int effectedNum = productCategoryDao.deleteProductCategory(productCategoryId, shopId);
+            if (effectedNum <= 0) {
+                throw new ProductCategoryOperationException("店铺类别删除失败...");
+            } else {
+                return new ProductCategoryExecution(ProductCategoryStateEnum.SUCCESS);
+            }
+        } catch (Exception e) {
+            throw new ProductCategoryOperationException("deleteProductCategory error: " + e.getMessage());
         }
     }
 }
