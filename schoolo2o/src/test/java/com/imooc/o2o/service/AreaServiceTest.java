@@ -2,8 +2,7 @@ package com.imooc.o2o.service;
 
 import com.imooc.o2o.BaseTest;
 import com.o2o.entity.Area;
-import com.o2o.service.AreaService;
-import com.o2o.service.impl.AreaServiceimpl;
+import com.o2o.service.impl.AreaServiceImpl;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,7 +16,7 @@ import java.util.List;
 public class AreaServiceTest extends BaseTest {
 
     @Autowired
-    private AreaServiceimpl areaService;
+    private AreaServiceImpl areaService;
 
     @Test
     public void testQueryArea() {

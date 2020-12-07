@@ -38,4 +38,12 @@ public class ShopAdminController {
         // 转发至店铺注册/编辑页面
         return "shop/shopmanagement";
     }
+
+    @RequestMapping(value = "/productcategorymanagement", method = RequestMethod.GET)
+    public String productCategoryManage(HttpServletResponse response) {
+        //后续进行拦截器配置
+        response.setContentType("text/html;charset=utf-8");
+        // 转发至店铺注册/编辑页面
+        return "shop/productcategorymanagement";
+    }
 }

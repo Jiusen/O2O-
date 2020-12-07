@@ -24,7 +24,7 @@ import java.util.List;
  * @Description
  */
 @Service
-public class ShopServiceimpl implements ShopService {
+public class ShopServiceImpl implements ShopService {
 
     @Autowired
     private ShopDao shopDao;

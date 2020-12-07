@@ -15,7 +15,7 @@ import java.util.List;
  * @Description
  */
 @Service
-public class AreaServiceimpl implements AreaService {
+public class AreaServiceImpl implements AreaService {
 
     @Autowired
     private AreaDao areaDao;

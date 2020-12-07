@@ -1,7 +1,7 @@
 $(function() {
-	var listUrl = '/o2o/shopadmin/getproductcategorylist';
-	var addUrl = '/o2o/shopadmin/addproductcategorys';
-	var deleteUrl = '/o2o/shopadmin/removeproductcategory';
+	var listUrl = '/schoolo2o/shopadmin/getproductcategorylist';
+	var addUrl = '/schoolo2o/shopadmin/addproductcategorys';
+	var deleteUrl = '/schoolo2o/shopadmin/removeproductcategory';
 	getList();
 	function getList() {
 		$
@@ -16,7 +16,7 @@ $(function() {
 										.map(function(item, index) {
 											tempHtml += ''
 													+ '<div class="row row-product-category now">'
-													+ '<div class="col-33 product-category-name">'
+													+ '<div class="col-33">'
 													+ item.productCategoryName
 													+ '</div>'
 													+ '<div class="col-33">'
