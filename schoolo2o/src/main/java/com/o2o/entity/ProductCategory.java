@@ -12,7 +12,7 @@ public class ProductCategory
     private Long productCategoryId;
     private Long shopId;  //店铺ID
     private String productCategoryName;  //商品类别名称
-    private String priority; //商品类别
+    private Integer priority; //商品优先级
     private Date createTime; //商品类别的创建时间
     public Long getProductCategoryId()
     {
@@ -38,11 +38,11 @@ public class ProductCategory
     {
         this.productCategoryName = productCategoryName;
     }
-    public String getPriority()
+    public Integer getPriority()
     {
         return priority;
     }
-    public void setPriority(String priority)
+    public void setPriority(Integer priority)
     {
         this.priority = priority;
     }
