@@ -27,7 +27,7 @@ public class ShopAdminController {
     public String shopList(HttpServletResponse response) {
         //后续进行拦截器配置
         response.setContentType("text/html;charset=utf-8");
-        // 转发至店铺注册/编辑页面
+        // 转发至店铺列表页面
         return "shop/shoplist";
     }
 
@@ -35,7 +35,7 @@ public class ShopAdminController {
     public String shopmanagement(HttpServletResponse response) {
         //后续进行拦截器配置
         response.setContentType("text/html;charset=utf-8");
-        // 转发至店铺注册/编辑页面
+        // 转发至店铺管理页面
         return "shop/shopmanagement";
     }
 
@@ -43,7 +43,23 @@ public class ShopAdminController {
     public String productCategoryManage(HttpServletResponse response) {
         //后续进行拦截器配置
         response.setContentType("text/html;charset=utf-8");
-        // 转发至店铺注册/编辑页面
+        // 转发至商品类别管理页面
         return "shop/productcategorymanagement";
+    }
+
+    @RequestMapping(value = "/productoperation")
+    public String productOperation(HttpServletResponse response) {
+        //后续进行拦截器配置
+        response.setContentType("text/html;charset=utf-8");
+        // 转发至商品添加/编辑页面
+        return "shop/productoperation";
+    }
+
+    @RequestMapping(value = "/productmanagement")
+    public String productManagement(HttpServletResponse response) {
+        //后续进行拦截器配置
+        response.setContentType("text/html;charset=utf-8");
+        // 转发至商品管理页面
+        return "shop/productmanagement";
     }
 }

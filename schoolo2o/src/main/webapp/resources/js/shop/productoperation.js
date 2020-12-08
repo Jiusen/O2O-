@@ -2,11 +2,11 @@ $(function() {
 	// 从URL里获取productId参数的值
 	var productId = getQueryString('productId');
 	// 通过productId获取商品信息的URL
-	var infoUrl = '/o2o/shopadmin/getproductbyid?productId=' + productId;
+	var infoUrl = '/schoolo2o/shopadmin/getproductbyid?productId=' + productId;
 	// 获取当前店铺设定的商品类别列表的URL
-	var categoryUrl = '/o2o/shopadmin/getproductcategorylist';
+	var categoryUrl = '/schoolo2o/shopadmin/getproductcategorylist';
 	// 更新商品信息的URL
-	var productPostUrl = '/o2o/shopadmin/modifyproduct';
+	var productPostUrl = '/schoolo2o/shopadmin/modifyproduct';
 	// 由于商品添加和编辑使用的是同一个页面，
 	// 该标识符用来标明本次是添加还是编辑操作
 	var isEdit = false;
@@ -16,13 +16,12 @@ $(function() {
 		isEdit = true;
 	} else {
 		getCategory();
-		productPostUrl = '/o2o/shopadmin/addproduct';
+		productPostUrl = '/schoolo2o/shopadmin/addproduct';
 	}
 
 	// 获取需要编辑的商品的商品信息，并赋值给表单
 	function getInfo(id) {
-		$
-				.getJSON(
+				$.getJSON(
 						infoUrl,
 						function(data) {
 							if (data.success) {
