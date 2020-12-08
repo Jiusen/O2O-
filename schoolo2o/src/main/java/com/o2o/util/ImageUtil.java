@@ -57,11 +57,37 @@ public class ImageUtil {
         String relativeAddr = targetAddr + realFileName + extension;  //图片相对路径
         logger.debug("current relativeAddr is: " + relativeAddr);
         File dest = new File(PathUtil.getImgBasePath() + relativeAddr); //图片在机器上的URL
-        logger.debug("dest complete addr is: " + dest);
         try{
-            Thumbnails.of(thumbnail.getImageName()).size(200,200)
+            Thumbnails.of(thumbnail.getImage()).size(200,200)
                     .watermark(Positions.BOTTOM_RIGHT,ImageIO.read(new File(basePath + "/watermark.jpg")), 0.25f)
                     .outputQuality(0.8f)
+                    .toFile(dest);
+        } catch (IOException e) {
+            logger.error(e.toString());
+            e.printStackTrace();
+        }
+        return relativeAddr;
+    }
+
+    /**
+     * 处理详情图，并返回新生成图片的相对地址
+     *
+     * @param thumbnail 图片文件输入流\文件名
+     * @param targetAddr 目标地址
+     * @return 返回新的图片的相对地址（目的：换机器的话，直接从数据库得到图片地址，不需要再更换BasePath，解耦）
+     */
+    public static String generateNormalImg(ImageHolder thumbnail, String targetAddr){
+        String realFileName = getRandomFileName(); //文件名
+        String extension = getFileExtension(thumbnail.getImageName()); //扩展名：.jsp
+        makeDirPath(targetAddr);
+        String relativeAddr = targetAddr + realFileName + extension;  //图片相对路径
+        logger.debug("current relativeAddr is: " + relativeAddr);
+        File dest = new File(PathUtil.getImgBasePath() + relativeAddr); //图片在机器上的URL
+        logger.debug("dest complete addr is: " + dest);
+        try{
+            Thumbnails.of(thumbnail.getImage()).size(337,640)
+                    .watermark(Positions.BOTTOM_RIGHT,ImageIO.read(new File(basePath + "/watermark.jpg")), 0.25f)
+                    .outputQuality(0.9f)
                     .toFile(dest);
         } catch (IOException e) {
             logger.error(e.toString());

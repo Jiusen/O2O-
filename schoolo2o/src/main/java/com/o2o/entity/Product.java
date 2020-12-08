@@ -29,14 +29,6 @@ public class Product
     // 创建时间
     private Date createTime;
 
-    public Integer getPoint() {
-        return point;
-    }
-
-    public void setPoint(Integer point) {
-        this.point = point;
-    }
-
     // 最近一次的更新时间
     private Date lastEditTime;
     // 0.下架 1.在前端展示系统展示
@@ -49,6 +41,12 @@ public class Product
     // 店铺实体类，标明商品属于哪个店铺
     private Shop shop;
 
+    public Integer getPoint() {
+        return point;
+    }
+    public void setPoint(Integer point) {
+        this.point = point;
+    }
     public Long getProductId()
     {
         return productId;

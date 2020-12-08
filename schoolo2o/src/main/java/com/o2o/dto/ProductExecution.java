@@ -1,6 +1,7 @@
 package com.o2o.dto;
 
 import com.o2o.entity.Product;
+import com.o2o.enums.ProductCategoryStateEnum;
 import com.o2o.enums.ProductStateEnum;
 
 import java.util.List;
@@ -49,6 +50,7 @@ public class ProductExecution {
         this.productList = productList;
     }
 
+
     public int getState() {
         return state;
     }
@@ -89,4 +91,14 @@ public class ProductExecution {
         this.productList = productList;
     }
 
+    @Override
+    public String toString() {
+        return "ProductExecution{" +
+                "state=" + state +
+                ", stateInfo='" + stateInfo + '\'' +
+                ", count=" + count +
+                ", product=" + product +
+                ", productList=" + productList +
+                '}';
+    }
 }

@@ -46,9 +46,9 @@ public class ShopServiceTest extends BaseTest {
         Shop shop = new Shop();
         shop.setShopId(12L);
         shop.setShopName("修改后的店铺名称");
-        File shopImg = new File("D:/Jiusenproject/image/xiaohuangren.jpg");
+        File shopImg = new File("D:/Jiusenproject/image/dabai.jpg");
         InputStream shopInputStream = new FileInputStream(shopImg);
-        ImageHolder imageHolder = new ImageHolder("xiaohuangren.jpg", shopInputStream);
+        ImageHolder imageHolder = new ImageHolder("dabai.jpg", shopInputStream);
         ShopExecution shopExecution = shopService.modifyShop(shop, imageHolder);
         System.out.println("新的店铺图片地址: " + shopExecution.getShop().getShopImg());
     }

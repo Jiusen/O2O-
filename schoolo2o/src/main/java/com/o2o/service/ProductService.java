@@ -20,9 +20,14 @@ public interface ProductService {
      *
      * @param product
      * @param thumbnail
-     * @param productImgs
+     * @param productImgHolderList
      * @return
      * @throws ProductCategoryOperationException
      */
-    ProductExecution addProduct(Product product, ImageHolder thumbnail, List<ImageHolder> productImgs) throws ProductCategoryOperationException;
+    ProductExecution addProduct(Product product
+                                , ImageHolder thumbnail
+                                , List<ImageHolder> productImgHolderList)
+                                throws ProductCategoryOperationException;
+
+
 }
