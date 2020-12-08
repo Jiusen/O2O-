@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Author Jiusen Guo
@@ -44,5 +45,22 @@ public class ProductDaoTest extends BaseTest {
         // 判断添加是否成功
         int effectedNum = productDao.insertProduct(product1);
         System.out.println(effectedNum);
+    }
+
+    @Test
+    public void testBQueryProductList() throws Exception {
+        Product productCondition = new Product();
+        // 分页查询，预期返回三条结果
+        List<Product> productList = productDao.queryProductList(productCondition, 0, 3);
+        System.out.println(productList.size());
+        // 查询名称为测试的商品总数
+        int count = productDao.queryProductCount(productCondition);
+        System.out.println(count);
+        // 使用商品名称模糊查询，预期返回两条结果
+        productCondition.setProductName("测试");
+        productList = productDao.queryProductList(productCondition, 0, 3);
+        System.out.println(productList.size());
+        count = productDao.queryProductCount(productCondition);
+        System.out.println(count);
     }
 }
