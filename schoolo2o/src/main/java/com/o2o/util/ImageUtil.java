@@ -1,5 +1,6 @@
 package com.o2o.util;
 
+import com.o2o.dto.ImageHolder;
 import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.geometry.Positions;
 import org.slf4j.Logger;
@@ -45,21 +46,20 @@ public class ImageUtil {
 
     /**
      * 生成缩略图->文件存储
-     * @param thumbnailInputStream 图片文件输入流
-     * @param fileName 文件名
+     * @param thumbnail 图片文件输入流\文件名
      * @param targetAddr 目标地址
      * @return 返回新的图片的相对地址（目的：换机器的话，直接从数据库得到图片地址，不需要再更换BasePath，解耦）
     */
-    public static String generateThumbnail(InputStream thumbnailInputStream, String fileName, String targetAddr){
+    public static String generateThumbnail(ImageHolder thumbnail, String targetAddr){
         String realFileName = getRandomFileName(); //文件名
-        String extension = getFileExtension(fileName); //扩展名：.jsp
+        String extension = getFileExtension(thumbnail.getImageName()); //扩展名：.jsp
         makeDirPath(targetAddr);
         String relativeAddr = targetAddr + realFileName + extension;  //图片相对路径
         logger.debug("current relativeAddr is: " + relativeAddr);
         File dest = new File(PathUtil.getImgBasePath() + relativeAddr); //图片在机器上的URL
         logger.debug("dest complete addr is: " + dest);
         try{
-            Thumbnails.of(thumbnailInputStream).size(200,200)
+            Thumbnails.of(thumbnail.getImageName()).size(200,200)
                     .watermark(Positions.BOTTOM_RIGHT,ImageIO.read(new File(basePath + "/watermark.jpg")), 0.25f)
                     .outputQuality(0.8f)
                     .toFile(dest);
