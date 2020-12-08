@@ -72,7 +72,7 @@ public class ProductManagementController {
             if (multipartResolver.isMultipart(request)) {
                 multipartHttpServletRequest = (MultipartHttpServletRequest) request;
                 //取出缩略图并构建ImageHolder对象
-                CommonsMultipartFile thumbnailFile = (CommonsMultipartFile)multipartHttpServletRequest;
+                CommonsMultipartFile thumbnailFile = (CommonsMultipartFile)multipartHttpServletRequest.getFile("thumbnail");
                 thumbnail = new ImageHolder(thumbnailFile.getOriginalFilename(), thumbnailFile.getInputStream());
                 //取出详情图列表并构建List<ImageHolder>列表对象，最多支持6张图片上传
                 for (int i = 0; i < IMAGEMAXCOUNT; i++) {

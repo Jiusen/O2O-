@@ -1,8 +1,8 @@
 $(function() {
 	// 获取此店铺下的商品列表的URL
-	var listUrl = '/o2o/shopadmin/getproductlistbyshop?pageIndex=1&pageSize=999';
+	var listUrl = '/schoolo2o/shopadmin/getproductlistbyshop?pageIndex=1&pageSize=999';
 	// 商品下架URL
-	var statusUrl = '/o2o/shopadmin/modifyproduct';
+	var statusUrl = '/schoolo2o/shopadmin/modifyproduct';
 	getList();
 	/**
 	 * 获取此店铺下的商品列表
@@ -71,7 +71,7 @@ $(function() {
 						var target = $(e.currentTarget);
 						if (target.hasClass('edit')) {
 							// 如果有class edit则点击就进入店铺信息编辑页面，并带有productId参数
-							window.location.href = '/o2o/shopadmin/productoperation?productId='
+							window.location.href = '/schoolo2o/shopadmin/productoperation?productId='
 									+ e.currentTarget.dataset.id;
 						} else if (target.hasClass('status')) {
 							// 如果有class status则调用后台功能上/下架相关商品，并带有productId参数
@@ -79,7 +79,7 @@ $(function() {
 									e.currentTarget.dataset.status);
 						} else if (target.hasClass('preview')) {
 							// 如果有class preview则去前台展示系统该商品详情页预览商品情况
-							window.location.href = '/o2o/frontend/productdetail?productId='
+							window.location.href = '/schoolo2o/frontend/productdetail?productId='
 									+ e.currentTarget.dataset.id;
 						}
 					});

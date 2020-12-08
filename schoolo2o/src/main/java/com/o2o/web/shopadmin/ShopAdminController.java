@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ * 主要用来解析路由并转发到相应的html中
+ *
  * @Author Jiusen Guo
  * @Date 2020/11/27 17:54
  * @Description
@@ -39,7 +41,7 @@ public class ShopAdminController {
         return "shop/shopmanagement";
     }
 
-    @RequestMapping(value = "/productcategorymanagement", method = RequestMethod.GET)
+    @RequestMapping(value = "/productcategorymanagement")
     public String productCategoryManage(HttpServletResponse response) {
         //后续进行拦截器配置
         response.setContentType("text/html;charset=utf-8");
