@@ -94,7 +94,7 @@ public class ProductServiceImpl implements ProductService {
         ProductExecution pe = new ProductExecution();
         pe.setProductList(productList);
         pe.setCount(count);
-        return null;
+        return pe;
     }
 
     @Override
