@@ -107,8 +107,11 @@ public class ShopServiceImpl implements ShopService {
 
     @Override
     public ShopExecution getShopList(Shop shopCondition, int pageIndex, int pageSize) {
+        //将页码转换为行码
         int rowIndex = PageCalculator.calculateRowIndex(pageIndex, pageSize);
+        //依据查询条件，调用dao层返回相关的店铺列表
         List<Shop> shopList = shopDao.queryShopList(shopCondition, rowIndex, pageSize);
+        //依据相同的查询条件，返回店铺总数
         int count = shopDao.queryShopCount(shopCondition);
         ShopExecution shopExecution = new ShopExecution();
         if (shopList != null){

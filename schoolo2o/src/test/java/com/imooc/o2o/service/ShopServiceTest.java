@@ -79,4 +79,46 @@ public class ShopServiceTest extends BaseTest {
         ShopExecution shopExecution = shopService.addShop(shop,imageHolder);
         System.out.println(shopExecution.getState());
     }
+
+    @Test
+    public void getShopList() {
+        Shop shopCondtion = new Shop();
+        Shop shopCondition = compactShopCondition4Search(12, -1, -1, "小黄人");
+        int pageIndex = 1;
+        int pageSize = 3;
+        ShopExecution se = shopService.getShopList(shopCondition, pageIndex, pageSize);
+        System.out.println("exit");
+    }
+
+    private Shop compactShopCondition4Search(long parentId, long shopCategoryId, int areaId, String shopName) {
+        Shop shopCondition = new Shop();
+        if (parentId != -1L) {
+            //查询某一级ShopCategory下面所有二级ShopCategory里面的店铺列表
+            ShopCategory childCategory = new ShopCategory();
+            ShopCategory parentCategory = new ShopCategory();
+            parentCategory.setShopCategoryId(parentId);
+            childCategory.setParent(parentCategory);
+            shopCondition.setShopCategory(childCategory);
+        }
+        if (shopCategoryId != -1L) {
+            //查询某个二级ShopCategory下面的店铺列表
+            ShopCategory shopCategory = new ShopCategory();
+            shopCategory.setShopCategoryId(shopCategoryId);
+            shopCondition.setShopCategory(shopCategory);
+        }
+        if (areaId != -1L) {
+            //查询位于某个区域Id下的店铺列表
+            Area area = new Area();
+            area.setAreaId(areaId);
+            shopCondition.setArea(area);
+        }
+        if (shopName != null) {
+            //查询名字里包含shopName的店铺列表
+            System.out.println(shopName);
+            shopCondition.setShopName(shopName);
+        }
+        //前端展示的店铺都是审核成功的店铺
+        shopCondition.setEnableStatus(1);
+        return shopCondition;
+    }
 }
