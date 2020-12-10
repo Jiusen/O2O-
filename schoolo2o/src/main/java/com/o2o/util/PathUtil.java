@@ -10,7 +10,7 @@ public class PathUtil {
     /**
      * 系统属性-文件分隔符
      */
-    private static String separator = System.getProperty("file.separator");
+    private static String seperator = System.getProperty("file.separator");
 
     /**
      * 得到图片存储的根地址
@@ -24,7 +24,7 @@ public class PathUtil {
         } else {
             basePath = "/home/Jiusenproject/image/";
         }
-        basePath = basePath.replace("/",separator);
+        basePath = basePath.replace("/",seperator);
         return  basePath;
     }
 
@@ -35,6 +35,26 @@ public class PathUtil {
      */
     public static String getShopImagePath(long shopId){
         String imagePath = "/upload/item/shop/" + shopId + "/";
-        return imagePath.replace("/",separator);
+        return imagePath.replace("/",seperator);
+    }
+
+    /**
+     * 得到头条图片
+     *
+     * @return
+     */
+    public static String getHeadLineImagePath() {
+        String imagePath = "/upload/images/item/headtitle/";
+        return imagePath.replace("/", seperator);
+    }
+
+    /**
+     * 得到店铺分类图片
+     *
+     * @return
+     */
+    public static String getShopCategoryPath() {
+        String imagePath = "/upload/images/item/shopcategory/";
+        return imagePath.replace("/", seperator);
     }
 }

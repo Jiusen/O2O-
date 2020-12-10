@@ -22,14 +22,7 @@ public class ShopCategoryDaoTest extends BaseTest {
 
     @Test
     public void testQueryArea() {
-        List<ShopCategory> areaList = shopCategoryDao.queryShopCategory(new ShopCategory());
-        System.out.println(areaList.size() + "+++++");
-        ShopCategory testCategory = new ShopCategory();
-        ShopCategory parentCategory = new ShopCategory();
-        parentCategory.setShopCategoryId(1L);
-        testCategory.setParent(parentCategory);
-        List<ShopCategory> areaList2 = shopCategoryDao.queryShopCategory(testCategory);
-        System.out.println(areaList2.size() + "+++++");
-        System.out.println(areaList2.get(0).getShopCategoryName());
+        List<ShopCategory> areaList = shopCategoryDao.queryShopCategory(null);
+        System.out.println(areaList.get(0).getShopCategoryName());
     }
 }
