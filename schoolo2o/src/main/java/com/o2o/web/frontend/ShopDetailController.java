@@ -68,6 +68,8 @@ public class ShopDetailController {
      * @param request
      * @return
      */
+    @RequestMapping(value = "/listproductsbyshop", method = RequestMethod.GET)
+    @ResponseBody
     private Map<String, Object> listProductsByShop(HttpServletRequest request) {
         Map<String, Object> modelMap = new HashMap<>();
         //获取页码
@@ -77,7 +79,7 @@ public class ShopDetailController {
         //获取店铺Id
         long shopId = HttpServletRequestUtil.getLong(request, "shopId");
         //空值判断
-        if (pageSize > -1 && pageSize > -1 && shopId < -1) {
+        if (pageIndex > -1 && pageSize > -1 && shopId > -1) {
             //尝试获取商品类别Id
             long productCategoryId = HttpServletRequestUtil.getLong(request, "productCategoryId");
             //尝试获取模糊查询找的商品名

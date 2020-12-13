@@ -22,7 +22,7 @@ public class PathUtil {
         if(os.toLowerCase().startsWith("win")){
             basePath = "D:/Jiusenproject/image";
         } else {
-            basePath = "/home/Jiusenproject/image";
+            basePath = "/Users/baidu/work/image";
         }
         basePath = basePath.replace("/",seperator);
         return  basePath;
