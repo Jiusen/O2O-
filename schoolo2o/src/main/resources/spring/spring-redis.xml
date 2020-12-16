@@ -26,13 +26,13 @@
     </bean>
 
     <!-- 创建Redis工具类，封装好Redis的连接以进行相关的操作 -->
-    <bean id="jedisUtil" class="com.imooc.o2o.cache.JedisUtil" scope="singleton">
+    <bean id="jedisUtil" class="com.o2o.cache.JedisUtil" scope="singleton">
         <property name="jedisPool">
             <ref bean="jedisWritePool" />
         </property>
     </bean>
     <!-- Redis的key操作 -->
-    <bean id="jedisKeys" class="com.imooc.o2o.cache.JedisUtil$Keys"
+    <bean id="jedisKeys" class="com.o2o.cache.JedisUtil$Keys"
           scope="singleton">
         <constructor-arg ref="jedisUtil"></constructor-arg>
     </bean>
