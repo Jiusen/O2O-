@@ -8,7 +8,7 @@ import java.util.Date;
  * @Description ： 个人信息
  */
 public class PersonInfo {
-    private Long UserId;
+    private Long userId;
     private String name;
     private String profileImg;
     private String email;
@@ -20,11 +20,11 @@ public class PersonInfo {
     private Date lastEditTime;
 
     public Long getUserId() {
-        return UserId;
+        return userId;
     }
 
     public void setUserId(Long userId) {
-        UserId = userId;
+        this.userId = userId;
     }
 
     public String getName() {
