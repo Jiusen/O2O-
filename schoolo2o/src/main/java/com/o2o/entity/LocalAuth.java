@@ -11,7 +11,7 @@ public class LocalAuth {
     private Long localAuthId;
     private String username;
     private String password;
-    private Date ceateTime;
+    private Date createTime;
     private Date lastEditTime;
     private PersonInfo personInfo;
     public Long getLocalAuthId() {
@@ -33,10 +33,10 @@ public class LocalAuth {
         this.password = password;
     }
     public Date getCeateTime() {
-        return ceateTime;
+        return createTime;
     }
     public void setCeateTime(Date ceateTime) {
-        this.ceateTime = ceateTime;
+        this.createTime = ceateTime;
     }
     public Date getLastEditTime() {
         return lastEditTime;
