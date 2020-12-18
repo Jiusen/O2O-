@@ -34,26 +34,21 @@
     <!-- Redis的key操作 -->
     <bean id="jedisKeys" class="com.o2o.cache.JedisUtil$Keys"
           scope="singleton">
-        <constructor-arg ref="jedisUtil"></constructor-arg>
     </bean>
     <!-- Redis的Strings操作 -->
     <bean id="jedisStrings" class="com.o2o.cache.JedisUtil$Strings"
           scope="singleton">
-        <constructor-arg ref="jedisUtil"></constructor-arg>
     </bean>
     <!-- Redis的Lists操作 -->
     <bean id="jedisLists" class="com.o2o.cache.JedisUtil$Lists"
           scope="singleton">
-        <constructor-arg ref="jedisUtil"></constructor-arg>
     </bean>
     <!-- Redis的Sets操作 -->
     <bean id="jedisSets" class="com.o2o.cache.JedisUtil$Sets"
           scope="singleton">
-        <constructor-arg ref="jedisUtil"></constructor-arg>
     </bean>
     <!-- Redis的HashMap操作 -->
     <bean id="jedisHash" class="com.o2o.cache.JedisUtil$Hash"
           scope="singleton">
-        <constructor-arg ref="jedisUtil"></constructor-arg>
     </bean>
 </beans>

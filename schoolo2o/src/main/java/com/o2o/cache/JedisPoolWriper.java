@@ -1,6 +1,5 @@
 package com.o2o.cache;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 

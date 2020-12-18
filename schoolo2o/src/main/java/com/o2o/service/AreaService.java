@@ -11,8 +11,10 @@ import java.util.List;
  */
 public interface AreaService {
 
+    public static final String AREALISTKEY = "arealist";
     /**
-     * 所有地区的列表
+     * 所有地区的列表， 优先从缓存中获取
+     *
      * @return
      */
     List<Area> getAreaList();

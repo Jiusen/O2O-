@@ -12,6 +12,9 @@ import java.util.List;
  * @Description 商品类别服务
  */
 public interface ShopCategoryService {
+
+    public static final String SCLISTKEY = "shopcategorylist";
+
     /**
      * 店铺类别列表
      * @param shopCategoryCondition 查询条件
