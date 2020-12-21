@@ -38,6 +38,15 @@ public interface LocalAuthDao {
      */
     int insertLocalAuth(LocalAuth localAuth);
 
+    /**
+     * 更新账号信息
+     * @param userId
+     * @param username
+     * @param password
+     * @param newPassword
+     * @param lastEditTime
+     * @return
+     */
     int updateLocalAuth(@Param("userId") Long userId, @Param("username") String username,
                         @Param("password") String password, @Param("newPassword") String newPassword,
                         @Param("lastEditTime")Date lastEditTime);
