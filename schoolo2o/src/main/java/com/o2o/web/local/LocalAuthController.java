@@ -122,6 +122,9 @@ public class LocalAuthController {
 
     @RequestMapping(value = "/logincheck", method = RequestMethod.POST)
     @ResponseBody
+    /**
+     * 登录验证
+     */
     private Map<String, Object> loginCheck(HttpServletRequest request) {
         Map<String, Object> modelMap = new HashMap<>();
         //获取是否需要进行验证码校验的标识符

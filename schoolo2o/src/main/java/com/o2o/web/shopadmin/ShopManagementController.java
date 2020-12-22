@@ -142,6 +142,7 @@ public class ShopManagementController {
                 if (shopExecution.getState() == ShopStateEnum.CHECK.getState()) {
                     modelMap.put("success", true);
                     //该用户可以操作的店铺列表
+                    @SuppressWarnings("unchecked")
                     List<Shop> shopList = (List<Shop>) request.getSession().getAttribute("shopList");
                     if (shopList == null || shopList.size() == 0){
                         shopList = new ArrayList<Shop>();
@@ -250,10 +251,7 @@ public class ShopManagementController {
     @ResponseBody
     private Map<String,Object> getShopList(HttpServletRequest request){
         Map<String,Object> modelMap = new HashMap<String,Object>();
-        PersonInfo user = new PersonInfo();
-//        user.setUserId(1L);
-        request.getSession().setAttribute("user", user);
-        user = (PersonInfo) request.getSession().getAttribute("user");
+        PersonInfo user = (PersonInfo) request.getSession().getAttribute("user");
         try {
             Shop shopCondition = new Shop();
             shopCondition.setOwner(user);

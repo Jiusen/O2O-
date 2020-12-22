@@ -49,6 +49,7 @@ public class LocalAuthDaoTest extends BaseTest {
         //按照用户Id查询平台账号，进而获取用户信息
         LocalAuth localAuth = localAuthDao.queryLocalByUserId(1L);
         System.out.println(localAuth.getUsername());
+        System.out.println(localAuth.getPersonInfo().getEnableStatus());
     }
 
     @Test

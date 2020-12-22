@@ -18,7 +18,7 @@
 			<result column="user_type" property="userType" />
 			<result column="create_time" property="createTime" />
 			<result column="last_edit_time" property="lastEditTime" />
-			<result column="enablle_status" property="enableStatus" />
+			<result column="enable_status" property="enableStatus" />
 		</association>
 	</resultMap>
 	<select id="queryLocalByUserNameAndPwd" resultMap="localAuthResultMap" parameterType="String">

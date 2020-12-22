@@ -80,9 +80,11 @@ public class ShopCategoryServiceImpl implements ShopCategoryService {
             //若存在，则直接从redis里面取出相应数据
             String jsonString = jedisStrings.get(key);
             //指定要将string转换成的集合类型
-            JavaType javaType = mapper.getTypeFactory().constructParametricType(ArrayList.class, HeadLine.class);
+            JavaType javaType = mapper.getTypeFactory().constructParametricType(ArrayList.class, ShopCategory.class);
             try {
                 //将相关的key对应的value里的string转换成对象的实体类集合
+                logger.info(jsonString);
+                logger.info(javaType.toString());
                 shopCategoryList = mapper.readValue(jsonString, javaType);
             } catch (JsonProcessingException e) {
                 e.printStackTrace();
