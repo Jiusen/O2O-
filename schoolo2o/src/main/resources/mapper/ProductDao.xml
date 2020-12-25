@@ -14,6 +14,7 @@
 		<result column="create_time" property="createTime" />
 		<result column="last_edit_time" property="lastEditTime" />
 		<result column="enable_status" property="enableStatus" />
+		<result column="point" property="point" />
 		<association property="productCategory" column="product_category_id"
 			javaType="com.o2o.entity.ProductCategory">
 			<id column="product_category_id" property="productCategoryId" />
@@ -47,6 +48,7 @@
 		create_time,
 		last_edit_time,
 		enable_status,
+		point,
 		product_category_id,
 		shop_id
 		FROM
@@ -113,6 +115,7 @@
 		p.create_time,
 		p.last_edit_time,
 		p.enable_status,
+		p.point,
 		p.product_category_id,
 		p.shop_id,
 		pm.product_img_id,
@@ -138,12 +141,12 @@
 		INSERT INTO
 		tb_product(product_name,product_desc,img_addr,
 		normal_price,promotion_price,priority,create_time,
-		last_edit_time,enable_status,product_category_id,
+		last_edit_time,enable_status,point,product_category_id,
 		shop_id)
 		VALUES
 		(#{productName},#{productDesc},#{imgAddr},
 		#{normalPrice},#{promotionPrice},#{priority},#{createTime},
-		#{lastEditTime},#{enableStatus},#{productCategory.productCategoryId},
+		#{lastEditTime},#{enableStatus},#{point}#{productCategory.productCategoryId},
 		#{shop.shopId})
 	</insert>
 	<update id="updateProduct" parameterType="com.o2o.entity.Product"
@@ -158,6 +161,7 @@
 			<if test="priority != null">priority=#{priority},</if>
 			<if test="lastEditTime != null">last_edit_time=#{lastEditTime},</if>
 			<if test="enableStatus != null">enable_status=#{enableStatus},</if>
+			<if test="point != null">point=#{point},</if>
 			<if
 				test="productCategory != null
 				 and productCategory.productCategoryId != null">

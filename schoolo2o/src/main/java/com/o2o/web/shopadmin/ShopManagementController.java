@@ -256,6 +256,8 @@ public class ShopManagementController {
             Shop shopCondition = new Shop();
             shopCondition.setOwner(user);
             ShopExecution shopExecution = shopService.getShopList(shopCondition, 0, 100);
+            //用户可操作店铺存入session
+            request.getSession().setAttribute("shoplist", shopExecution.getShopList());
             modelMap.put("shopList", shopExecution.getShopList());
             modelMap.put("user", user);
             modelMap.put("success", true);

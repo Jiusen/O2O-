@@ -8,7 +8,7 @@ import java.util.List;
  * @Date 2020/11/25 14:23
  * @Description
  */
-public class Product
+public class  Product
 {
     // 主键ID
     private Long productId;
