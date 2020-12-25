@@ -1,0 +1,5 @@
+#!/bin/sh
+#图片备份
+tar -zcvf /root/backup/image/image`date +%Y%m%d%H%M%S`.tar.gz /Users/baidu/work/image
+#SQL备份
+mysqldump -uroot -pGjs935219! o2o > /root/backup/sql/o2o`date +%Y%m%d%H%M%S`.sql
